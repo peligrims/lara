@@ -1,7 +1,7 @@
 <?php
 
 namespace Corp\Providers;
-
+//use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Corp\Article;
@@ -28,6 +28,25 @@ class RouteServiceProvider extends ServiceProvider
 		Route::pattern('alias','[\w-]+');
 		
 		parent::boot();
+		
+		/*
+		$router->bind('articles', function ($value) {
+        	return \Corp\Article::where('alias',$value)->first();
+        });
+		
+		$router->bind('menus', function ($value) {
+        	return \Corp\Menu::where('id',$value)->first();
+        }); 
+		*/
+		
+		Route::bind('articles', function ($value) {
+        return \Corp\Article::where('alias',$value)->first();
+		});
+		
+		
+		Route::bind('menus', function ($value) {
+        return \Corp\Menu::where('id', $value)->first();
+		});
 		
 		
 	}

@@ -127,14 +127,17 @@ class ArticlesController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $alias
      * @return \Illuminate\Http\Response
      */
     public function edit($alias)
     {
-        //
-        $article = Article::where('alias', $alias)->first();
+        //dd($article);
 		
+		
+		//
+        $article = Article::where('alias', $alias)->first();
+		  // dd($article);
         if(Gate::denies('edit', new Article)) {
 			abort(403);
 		}
